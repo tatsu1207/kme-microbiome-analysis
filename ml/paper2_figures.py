@@ -2,7 +2,7 @@
 Paper 2: Korean Medicine × Microbiome — Figures and Tables.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.paper2_figures
 """
 import json
@@ -18,7 +18,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 from statsmodels.stats.multitest import multipletests
 
-from ml.config import MIN_AVAILABILITY, OUTER_CV_FOLDS, RANDOM_STATE
+from ml.config import MIN_AVAILABILITY, OUTER_CV_FOLDS, OUTPUT_DIR, RANDOM_STATE
 from ml.data_join import (
     clr_transform, compute_outcomes, filter_questionnaire_cols,
     load_genus_abundance, load_kmedata, select_top_genera,
@@ -28,7 +28,7 @@ from ml.model import delong_test, make_pipeline
 
 warnings.filterwarnings("ignore")
 
-OUT = Path("vault/health2/results")
+OUT = OUTPUT_DIR / "results"
 plt.rcParams.update({
     "font.size": 10, "axes.titlesize": 12, "axes.labelsize": 11,
     "figure.dpi": 300, "savefig.dpi": 300, "savefig.bbox": "tight",

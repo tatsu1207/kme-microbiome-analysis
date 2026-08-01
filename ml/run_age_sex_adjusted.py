@@ -7,7 +7,7 @@ This script: OLS regression on CLR-transformed genus abundances:
 Tests the symptom item effect (F-test on indicator dummies), with per-item FDR.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.run_age_sex_adjusted
 """
 import warnings
@@ -22,11 +22,12 @@ from statsmodels.formula.api import ols
 from statsmodels.stats.anova import anova_lm
 from statsmodels.stats.multitest import multipletests
 
+from ml.config import OUTPUT_DIR
 from ml.data_join import clr_transform, load_genus_abundance, load_kmedata
 
 warnings.filterwarnings("ignore")
 
-OUT = Path("vault/combined/results")
+OUT = OUTPUT_DIR / "results"
 
 # The 16 items that were significant in the unadjusted analysis
 ITEMS_OF_INTEREST = [

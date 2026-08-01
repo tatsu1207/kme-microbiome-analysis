@@ -7,7 +7,7 @@ Comprehensive microbiome analyses for publication:
   5. Enterotype analysis
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.analysis
 """
 import warnings

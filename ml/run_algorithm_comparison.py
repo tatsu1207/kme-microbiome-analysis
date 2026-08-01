@@ -3,7 +3,7 @@ Run logistic regression, random forest, and XGBoost on all outcomes.
 Shows that the M3≈M1 finding is algorithm-agnostic.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.run_algorithm_comparison
 """
 import numpy as np
@@ -130,7 +130,7 @@ def main():
             })
 
     sup_df = pd.DataFrame(sup_rows)
-    sup_path = Path("vault/health/results/tableS10_algorithm_comparison.csv")
+    sup_path = OUTPUT_DIR / "results" / "tableS10_algorithm_comparison.csv"
     sup_df.to_csv(sup_path, index=False)
     print(f"Supplementary table saved to {sup_path}")
 

@@ -7,7 +7,7 @@ Mechanistic analysis: Taxa → Metabolic Pathways → Health Outcomes
 4. Mechanistic summary: integrated taxa→pathway→outcome chains
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.mechanisms
 """
 import gzip

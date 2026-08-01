@@ -2,7 +2,7 @@
 Main runner: data join → feature engineering → model comparison.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.run                   # all three sources
     python -m ml.run --source dada2    # DADA2 genus-level
     python -m ml.run --source mothur   # mothur OTU-based

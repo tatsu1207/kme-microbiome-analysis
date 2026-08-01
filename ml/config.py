@@ -9,16 +9,18 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 ML_DIR = PROJECT_DIR / "ml"
 OUTPUT_DIR = ML_DIR / "output"
 
-# Data sources
-KMEDATA_CSV = PROJECT_DIR / "docs/question/standardized/kmedata_merged.csv"
-DADA2_DIR = Path.home() / "dada2/health-check/dada2_combined/dada2"
+# Data sources — adjust these paths to your environment
+# KMEDATA: questionnaire data from KIOM (available upon reasonable request)
+KMEDATA_CSV = PROJECT_DIR / "data/kmedata_merged.csv"
+# DADA2 output: ASV table and taxonomy from 16S-Pipeline (PRJNA1472377)
+DADA2_DIR = PROJECT_DIR / "data/dada2"
 ASV_TABLE = DADA2_DIR / "asv_table.tsv"
 TAXONOMY = DADA2_DIR / "taxonomy.tsv"
 PICRUST2_PATHWAYS = DADA2_DIR / "picrust2/pathways_out/path_abun_unstrat.tsv.gz"
 PICRUST2_PATHWAYS_DESC = DADA2_DIR / "picrust2/pathways_out/path_abun_unstrat_described.tsv.gz"
 
-# Mothur OTU-based data
-MOTHUR_DIR = Path(__file__).resolve().parent.parent / "DB"
+# Mothur OTU-based data (optional, for mothur-based comparison)
+MOTHUR_DIR = PROJECT_DIR / "data/mothur"
 MOTHUR_SHARED = MOTHUR_DIR / "DS.shared"
 MOTHUR_TAXONOMY = MOTHUR_DIR / "DS.taxonomy"
 

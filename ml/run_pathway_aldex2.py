@@ -2,7 +2,7 @@
 Run ALDEx2 on PICRUSt2 pathway and KO data for each outcome.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.run_pathway_aldex2
 """
 import subprocess
@@ -15,7 +15,7 @@ import pandas as pd
 from ml.config import DADA2_DIR, KMEDATA_CSV
 from ml.data_join import load_kmedata, load_pathways, compute_outcomes
 
-R_SCRIPT = Path("/home/unnot/github/16S-Pipeline/r_scripts/run_aldex2.R")
+R_SCRIPT = Path(__file__).resolve().parent / "r_scripts" / "run_aldex2.R"
 CONDA_ENV = "analysis_16S"
 OUTPUT_DIR = Path("ml/output/analysis")
 

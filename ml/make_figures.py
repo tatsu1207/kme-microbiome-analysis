@@ -2,7 +2,7 @@
 Generate publication figures and tables.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.make_figures
 """
 import numpy as np
@@ -14,7 +14,9 @@ import matplotlib.gridspec as gridspec
 from matplotlib.patches import FancyBboxPatch
 from pathlib import Path
 
-RESULTS_DIR = Path("vault/combined/results")
+from ml.config import OUTPUT_DIR
+
+RESULTS_DIR = OUTPUT_DIR / "results"
 ANALYSIS_DIR = Path("ml/output/analysis")
 MECH_DIR = Path("ml/output/mechanisms")
 ML_DIR = Path("ml/output")

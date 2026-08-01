@@ -3,7 +3,7 @@ Run all 5 differential abundance tools from 16S-Pipeline on our dataset.
 Tools: ALDEx2, DESeq2, ANCOM-BC2, LinDA, MaAsLin2
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.run_da_comparison
 """
 import subprocess
@@ -16,7 +16,7 @@ import pandas as pd
 from ml.config import ASV_TABLE, TAXONOMY, KMEDATA_CSV
 from ml.data_join import compute_outcomes, load_kmedata
 
-R_SCRIPTS_DIR = Path("/home/unnot/github/16S-Pipeline/r_scripts")
+R_SCRIPTS_DIR = Path(__file__).resolve().parent / "r_scripts"
 OUTPUT_DIR = Path("ml/output/da_comparison")
 CONDA_ENV = "analysis_16S"
 

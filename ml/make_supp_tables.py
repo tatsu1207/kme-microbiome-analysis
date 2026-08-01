@@ -2,14 +2,14 @@
 Generate supplementary tables for questionnaire data.
 
 Usage:
-    cd /home/unnot/github/health-check/microbiome_report
+    cd /path/to/kme-microbiome-analysis
     python -m ml.make_supp_tables
 """
 import numpy as np
 import pandas as pd
 from pathlib import Path
 
-from ml.config import MIN_AVAILABILITY
+from ml.config import MIN_AVAILABILITY, OUTPUT_DIR
 from ml.data_join import (
     compute_outcomes,
     filter_questionnaire_cols,
@@ -18,7 +18,7 @@ from ml.data_join import (
 )
 from ml.features import assign_blocks, process_questionnaire
 
-RESULTS_DIR = Path("vault/health/results")
+RESULTS_DIR = OUTPUT_DIR / "results"
 
 
 def get_ds_data():
