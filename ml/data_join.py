@@ -37,20 +37,22 @@ def load_kmedata() -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # 2. Load DADA2 ASV table → genus-level relative abundance
 # ---------------------------------------------------------------------------
-def load_genus_abundance() -> pd.DataFrame:
+def load_genus_abundance(asv_table=ASV_TABLE, taxonomy=TAXONOMY) -> pd.DataFrame:
     """
     Collapse ASV table to genus level and compute relative abundances.
+    asv_table/taxonomy default to config paths; the longevity analysis passes
+    the combined DS + RC run (see longevity_config.py).
     Returns: DataFrame (samples × genera), values = relative abundance [0,1].
     """
     # ASV count table: rows = ASVs, cols = samples
-    asv = pd.read_csv(ASV_TABLE, sep="\t", index_col=0)
+    asv = pd.read_csv(asv_table, sep="\t", index_col=0)
     # Drop non-sample columns (e.g. 'sequence' from combined pipeline)
     non_sample_cols = [c for c in asv.columns if c in ("sequence",)]
     if non_sample_cols:
         asv = asv.drop(columns=non_sample_cols)
 
     # Taxonomy mapping: ASV → Genus
-    tax = pd.read_csv(TAXONOMY, sep="\t", index_col=0)
+    tax = pd.read_csv(taxonomy, sep="\t", index_col=0)
     tax["genus_label"] = tax["Genus"].fillna("Unclassified")
 
     # Keep only ASVs present in taxonomy

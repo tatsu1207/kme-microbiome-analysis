@@ -70,6 +70,64 @@ python -m ml.make_figures
 5. **Ecological modules** (`mechanisms.py`): HAM/DAM module balance scores, residualized for age+sex.
 6. **Enterotype analysis** (`analysis.py`): PAM clustering on Jensen-Shannon divergence.
 
+## Longevity-village analysis
+
+Code for the companion manuscript "Host-Adapted Lactobacilli and Fiber-Degrader Depletion in the Gut Microbiome of Korean Longevity-Village Elders" (in preparation). It compares 1,256 elderly residents of ten designated longevity villages in Jeollanam-do (rural cohort, RC; "Muan"/"MB" in the code) with the 828-adult DS health-checkup cohort. The primary comparison is RC vs DS adults aged 60+ (n = 192).
+
+### Data
+
+- **16S rRNA sequences**: NCBI BioProjects [PRJNA1472377](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1472377) (DS) and [PRJNA1476885](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1476885) (RC), processed together with 16S-Pipeline (2,095 samples, 2,084 after QC)
+- **RC metadata and questionnaires**: available upon reasonable request
+
+Set the paths in `ml/longevity_config.py`. The defaults expect:
+
+```
+data/
+├── kmedata_merged.csv          # DS questionnaire (as for the lifestyle analysis)
+├── dada2_combined/             # asv_table.tsv, taxonomy.tsv for the combined DS + RC run
+└── longevity/
+    ├── MB.txt                  # RC metadata: run_year, Sex, Height, Weight, Sample, Birthdate
+    └── questionnaires/         # per-wave RC questionnaires: 22.xlsx … 25.xlsx
+```
+
+`data/` and `ml/output/` are git-ignored. Outputs are written to `ml/output/longevity/`.
+
+### Scripts
+
+| File | Description |
+|---|---|
+| `longevity_config.py` | Paths for the combined DS + RC data and outputs |
+| `longevity_muan.py` | Data loading (DS + RC; ages 50–110), cohort summary (Table 1 values), Bray-Curtis PERMANOVA (Table 2 F and P; PERMDISP not included), alpha diversity (Fig. S2), RC vs DS 60+ differential abundance statistics, enterotypes (Fig. S3), PCoA (Fig. S1) |
+| `longevity_table_s1.py` | Table S1: 153 genera at ≥10% prevalence, CLR (pseudocount 1e-6), Mann-Whitney with BH-FDR, Cliff's delta, prevalence by group |
+| `longevity_fig3.py` | Fig. 3: CLR box plots of 14 key genera across DS young, DS 60+ and RC (5 × 3 grid) |
+| `longevity_extra.py` | Fig. S4 heatmap (plots precomputed diet–microbiome correlations from `tableS4_diet_microbiome.csv`) and additional exploratory analyses (microbiome-age model, age-genus overlap, lifestyle vs age gap) |
+| `longevity_graphical_abstract.py` | Graphical abstract (values typed in from the results) |
+| `run_picrust2_longevity.sh` | PICRUSt2 v2.6.3 on the unrarefied combined ASV table, with an exploratory KO/pathway summary |
+
+### Usage
+
+```bash
+cd /path/to/kme-microbiome-analysis
+
+# Cohort summary, diversity, PERMANOVA, enterotypes, DA statistics
+python -m ml.longevity_muan
+
+# Table S1 and Fig. 3
+python -m ml.longevity_table_s1
+python -m ml.longevity_fig3
+
+# Fig. S4 and exploratory analyses
+python -m ml.longevity_extra
+
+# Graphical abstract
+python -m ml.longevity_graphical_abstract
+
+# PICRUSt2 (requires a conda env named "picrust2")
+bash ml/run_picrust2_longevity.sh
+```
+
+`data_join.load_genus_abundance()` now takes optional `asv_table` and `taxonomy` arguments. The defaults are unchanged, so the lifestyle analysis above behaves exactly as before.
+
 ## License
 
 This code is provided for reproducibility of the published results. Please cite the paper if you use this code.
