@@ -18,6 +18,8 @@ MB_META = PROJECT_DIR / "data/longevity/MB.txt"
 MB_NAMES = PROJECT_DIR / "data/longevity/MB.xlsx"
 # Per-wave RC questionnaires (22.xlsx, 23.xlsx, 24.xlsx, 25.xlsx)
 MB_QUESTIONNAIRE_DIR = PROJECT_DIR / "data/longevity/questionnaires"
+# Sample → cohort/sub-district table; columns sample_id, cohort, village_type, region
+SAMPLE_GROUPS = PROJECT_DIR / "data/longevity/sample_groups.csv"
 
 # Outputs (figures, tables)
 LONGEVITY_OUT = PROJECT_DIR / "ml/output/longevity"
