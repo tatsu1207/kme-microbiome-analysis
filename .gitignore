@@ -1,0 +1,9 @@
+# Input data (contains participant information; never commit)
+data/
+
+# Generated outputs
+ml/output/
+
+# Python
+__pycache__/
+*.pyc
