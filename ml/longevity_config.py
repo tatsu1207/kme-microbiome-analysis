@@ -20,6 +20,9 @@ MB_NAMES = PROJECT_DIR / "data/longevity/MB.xlsx"
 MB_QUESTIONNAIRE_DIR = PROJECT_DIR / "data/longevity/questionnaires"
 # Sample → cohort/sub-district table; columns sample_id, cohort, village_type, region
 SAMPLE_GROUPS = PROJECT_DIR / "data/longevity/sample_groups.csv"
+# DS registration addresses (one sheet per year; columns 스크리닝번호, 주소, and for 2020
+# also 바뀐 스크리닝 번호). Contains personal data — available upon reasonable request
+DS_ADDRESSES = PROJECT_DIR / "data/longevity/ds_addresses.xlsx"
 
 # Outputs (figures, tables)
 LONGEVITY_OUT = PROJECT_DIR / "ml/output/longevity"

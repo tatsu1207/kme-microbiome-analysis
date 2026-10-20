@@ -88,6 +88,7 @@ data/
 └── longevity/
     ├── MB.txt                  # RC metadata: run_year, Sex, Height, Weight, Sample, Birthdate
     ├── sample_groups.csv       # sample_id, cohort, village_type, region (RC sub-district)
+    ├── ds_addresses.xlsx       # DS registration addresses (personal data; on request)
     └── questionnaires/         # per-wave RC questionnaires: 22.xlsx … 25.xlsx
 ```
 
@@ -102,6 +103,7 @@ data/
 | `longevity_table_s1.py` | Table S1: 153 genera at ≥10% prevalence, CLR (pseudocount 1e-6), Mann-Whitney with BH-FDR, Cliff's delta, prevalence by group |
 | `longevity_fig3.py` | Fig. 3: CLR box plots of 14 key genera across DS young, DS 60+ and RC (5 × 3 grid) |
 | `longevity_sensitivity.py` | Table S5 sensitivity analyses on the fixed 153-genus set: (i) ages 60–69 with PERMANOVA, (iii) sex-stratified tests and cohort × sex interaction for the RC-enriched key genera, (iv) shared sampling years 2022 + 2024, (v) rarefaction to 10,000 genus-classified reads, (vi) exclusion of the non-rural sites |
+| `longevity_table_s2.py` | Table S2: residential distribution of the DS cohort from registration addresses (explicit classification rules; aggregate counts only) |
 | `longevity_table3.py` | Table 3: 2025 food frequency questionnaire (at least weekly / daily / twice daily, by explicit frequency codes), 2022 smoking and alcohol, 2022–2024 exercise, with completion rates |
 | `longevity_table2.py` | Table 2: Bray-Curtis PERMANOVA (F, R², P; 999 permutations) for cohort, sex, age group and the restricted cohort comparisons, plus PERMDISP (distance to spatial median) for the three cohort comparisons; requires scikit-bio |
 | `longevity_fiber_index.py` | Composite fiber-degrader index (summed relative abundance of 10 genera; 7-genus version without the DS-60+ outlier genera): RC vs DS 60+ and in the 60–69 subset (Mann-Whitney, Cohen's d), plus within-RC Spearman correlations with summed lactobacilli |
@@ -126,6 +128,7 @@ python -m ml.longevity_fig3
 # Sensitivity analyses (Table S5) and ANCOM-BC2 (Table S3; requires R + ANCOMBC)
 python -m ml.longevity_table2
 python -m ml.longevity_table3
+python -m ml.longevity_table_s2
 python -m ml.longevity_sensitivity
 python -m ml.longevity_fiber_index
 python -m ml.longevity_ancombc2 --threads 8
