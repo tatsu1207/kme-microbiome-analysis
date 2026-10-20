@@ -101,6 +101,7 @@ data/
 | `longevity_config.py` | Paths for the combined DS + RC data and outputs |
 | `longevity_muan.py` | Data loading (DS + RC; ages 50–110), cohort summary (Table 1 values), Bray-Curtis PERMANOVA (Table 2 F and P; PERMDISP not included), alpha diversity (Fig. S2), RC vs DS 60+ differential abundance statistics, enterotypes (Fig. S3), PCoA (Fig. S1) |
 | `longevity_table_s1.py` | Table S1: 153 genera at ≥10% prevalence, CLR (pseudocount 1e-6), Mann-Whitney with BH-FDR, Cliff's delta, prevalence by group |
+| `longevity_fig2.py` | Fig. 2: top 25 differentially abundant genera (CLR difference and Cliff's δ panels); † marks genera with opposite sign by ANCOM-BC2 (run `longevity_ancombc2.py` first) |
 | `longevity_fig3.py` | Fig. 3: CLR box plots of 14 key genera across DS young, DS 60+ and RC (5 × 3 grid) |
 | `longevity_sensitivity.py` | Table S5 sensitivity analyses on the fixed 153-genus set: (i) ages 60–69 with PERMANOVA, (iii) sex-stratified tests and cohort × sex interaction for the RC-enriched key genera, (iv) shared sampling years 2022 + 2024, (v) rarefaction to 10,000 genus-classified reads, (vi) exclusion of the non-rural sites |
 | `longevity_table_s4.py` | Table S4: Spearman correlations of 16 food-group frequencies (2025 FFQ) with the CLR abundance of 11 genera in the 2025 RC subset (n = 145), BH-FDR across 176 tests; its output feeds the Fig. S4 heatmap in `longevity_extra.py` |
@@ -125,6 +126,7 @@ python -m ml.longevity_muan
 # Table S1 and Fig. 3
 python -m ml.longevity_table_s1
 python -m ml.longevity_fig3
+python -m ml.longevity_fig2       # after longevity_ancombc2 (for the † marks)
 
 # Sensitivity analyses (Table S5) and ANCOM-BC2 (Table S3; requires R + ANCOMBC)
 python -m ml.longevity_table2
