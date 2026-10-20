@@ -17,7 +17,7 @@ Python and R code for analyzing 16S rRNA gut microbiome data and health question
 numpy, pandas, scipy, scikit-learn, xgboost, statsmodels, matplotlib
 
 ### R (≥ 4.2)
-ALDEx2, DESeq2, ANCOM-BC2, LinDA, MaAsLin2 (for multi-tool differential abundance)
+ALDEx2, DESeq2, ANCOM-BC2, LinDA, MaAsLin2 (for multi-tool differential abundance); ANCOMBC ≥ 2.8, phyloseq, optparse, jsonlite (longevity ANCOM-BC2)
 
 ## Code structure
 
@@ -87,6 +87,7 @@ data/
 ├── dada2_combined/             # asv_table.tsv, taxonomy.tsv for the combined DS + RC run
 └── longevity/
     ├── MB.txt                  # RC metadata: run_year, Sex, Height, Weight, Sample, Birthdate
+    ├── sample_groups.csv       # sample_id, cohort, village_type, region (RC sub-district)
     └── questionnaires/         # per-wave RC questionnaires: 22.xlsx … 25.xlsx
 ```
 
@@ -100,6 +101,8 @@ data/
 | `longevity_muan.py` | Data loading (DS + RC; ages 50–110), cohort summary (Table 1 values), Bray-Curtis PERMANOVA (Table 2 F and P; PERMDISP not included), alpha diversity (Fig. S2), RC vs DS 60+ differential abundance statistics, enterotypes (Fig. S3), PCoA (Fig. S1) |
 | `longevity_table_s1.py` | Table S1: 153 genera at ≥10% prevalence, CLR (pseudocount 1e-6), Mann-Whitney with BH-FDR, Cliff's delta, prevalence by group |
 | `longevity_fig3.py` | Fig. 3: CLR box plots of 14 key genera across DS young, DS 60+ and RC (5 × 3 grid) |
+| `longevity_sensitivity.py` | Table S5 sensitivity analyses on the fixed 153-genus set: (i) ages 60–69 with PERMANOVA, (iii) sex-stratified tests and cohort × sex interaction for the RC-enriched key genera, (iv) shared sampling years 2022 + 2024, (v) rarefaction to 10,000 genus-classified reads, (vi) exclusion of the non-rural sites |
+| `longevity_ancombc2.py` | (ii) ANCOM-BC2 with sex as covariate (Table S3) and its agreement with the Mann-Whitney results; calls `r_scripts/run_ancombc2_longevity.R` |
 | `longevity_extra.py` | Fig. S4 heatmap (plots precomputed diet–microbiome correlations from `tableS4_diet_microbiome.csv`) and additional exploratory analyses (microbiome-age model, age-genus overlap, lifestyle vs age gap) |
 | `longevity_graphical_abstract.py` | Graphical abstract (values typed in from the results) |
 | `run_picrust2_longevity.sh` | PICRUSt2 v2.6.3 on the unrarefied combined ASV table, with an exploratory KO/pathway summary |
@@ -115,6 +118,10 @@ python -m ml.longevity_muan
 # Table S1 and Fig. 3
 python -m ml.longevity_table_s1
 python -m ml.longevity_fig3
+
+# Sensitivity analyses (Table S5) and ANCOM-BC2 (Table S3; requires R + ANCOMBC)
+python -m ml.longevity_sensitivity
+python -m ml.longevity_ancombc2 --threads 8
 
 # Fig. S4 and exploratory analyses
 python -m ml.longevity_extra
