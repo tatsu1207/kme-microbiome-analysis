@@ -107,6 +107,7 @@ data/
 | `longevity_ancombc2.py` | (ii) ANCOM-BC2 with sex as covariate (Table S3) and its agreement with the Mann-Whitney results; calls `r_scripts/run_ancombc2_longevity.R` |
 | `longevity_extra.py` | Fig. S4 heatmap (plots precomputed diet–microbiome correlations from `tableS4_diet_microbiome.csv`) and additional exploratory analyses (microbiome-age model, age-genus overlap, lifestyle vs age gap) |
 | `longevity_graphical_abstract.py` | Graphical abstract (values typed in from the results) |
+| `longevity_picrust2.py` | Fig. S5 / PICRUSt2 results: DS 60–69 vs RC 60–69 on the unrarefied and rarefied (10,000 reads) runs — NSTI, butyrate-synthesis KOs by route and summed, KO and pathway Mann-Whitney with BH-FDR, key pathways, and the three-group (DS young / DS 60–69 / RC 60–69) pathway classification; `--make-rarefied-input` writes the rarefied PICRUSt2 input |
 | `run_picrust2_longevity.sh` | PICRUSt2 v2.6.3 on the unrarefied combined ASV table, with an exploratory KO/pathway summary |
 
 ### Usage
@@ -134,7 +135,10 @@ python -m ml.longevity_extra
 python -m ml.longevity_graphical_abstract
 
 # PICRUSt2 (requires a conda env named "picrust2")
-bash ml/run_picrust2_longevity.sh
+bash ml/run_picrust2_longevity.sh                 # unrarefied run → ml/output/longevity/picrust2_out
+python -m ml.longevity_picrust2 --make-rarefied-input
+#   then run picrust2_pipeline.py on the printed files → ml/output/longevity/picrust2_out_rarefied
+python -m ml.longevity_picrust2
 ```
 
 `data_join.load_genus_abundance()` now takes optional `asv_table` and `taxonomy` arguments. The defaults are unchanged, so the lifestyle analysis above behaves exactly as before.

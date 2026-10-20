@@ -23,3 +23,8 @@ SAMPLE_GROUPS = PROJECT_DIR / "data/longevity/sample_groups.csv"
 
 # Outputs (figures, tables)
 LONGEVITY_OUT = PROJECT_DIR / "ml/output/longevity"
+
+# PICRUSt2 output directories (picrust2_pipeline.py -o): unrarefied run from
+# run_picrust2_longevity.sh, and the run on the ASV table rarefied to 10,000 reads
+PICRUST2_DIR = LONGEVITY_OUT / "picrust2_out"
+PICRUST2_RAREFIED_DIR = LONGEVITY_OUT / "picrust2_out_rarefied"
