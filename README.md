@@ -14,7 +14,7 @@ Python and R code for analyzing 16S rRNA gut microbiome data and health question
 ## Requirements
 
 ### Python (≥ 3.10)
-numpy, pandas, scipy, scikit-learn, xgboost, statsmodels, matplotlib
+numpy, pandas, scipy, scikit-learn, xgboost, statsmodels, matplotlib; scikit-bio (longevity Table 2)
 
 ### R (≥ 4.2)
 ALDEx2, DESeq2, ANCOM-BC2, LinDA, MaAsLin2 (for multi-tool differential abundance); ANCOMBC ≥ 2.8, phyloseq, optparse, jsonlite (longevity ANCOM-BC2)
@@ -102,6 +102,7 @@ data/
 | `longevity_table_s1.py` | Table S1: 153 genera at ≥10% prevalence, CLR (pseudocount 1e-6), Mann-Whitney with BH-FDR, Cliff's delta, prevalence by group |
 | `longevity_fig3.py` | Fig. 3: CLR box plots of 14 key genera across DS young, DS 60+ and RC (5 × 3 grid) |
 | `longevity_sensitivity.py` | Table S5 sensitivity analyses on the fixed 153-genus set: (i) ages 60–69 with PERMANOVA, (iii) sex-stratified tests and cohort × sex interaction for the RC-enriched key genera, (iv) shared sampling years 2022 + 2024, (v) rarefaction to 10,000 genus-classified reads, (vi) exclusion of the non-rural sites |
+| `longevity_table2.py` | Table 2: Bray-Curtis PERMANOVA (F, R², P; 999 permutations) for cohort, sex, age group and the restricted cohort comparisons, plus PERMDISP (distance to spatial median) for the three cohort comparisons; requires scikit-bio |
 | `longevity_fiber_index.py` | Composite fiber-degrader index (summed relative abundance of 10 genera; 7-genus version without the DS-60+ outlier genera): RC vs DS 60+ and in the 60–69 subset (Mann-Whitney, Cohen's d), plus within-RC Spearman correlations with summed lactobacilli |
 | `longevity_ancombc2.py` | (ii) ANCOM-BC2 with sex as covariate (Table S3) and its agreement with the Mann-Whitney results; calls `r_scripts/run_ancombc2_longevity.R` |
 | `longevity_extra.py` | Fig. S4 heatmap (plots precomputed diet–microbiome correlations from `tableS4_diet_microbiome.csv`) and additional exploratory analyses (microbiome-age model, age-genus overlap, lifestyle vs age gap) |
@@ -121,6 +122,7 @@ python -m ml.longevity_table_s1
 python -m ml.longevity_fig3
 
 # Sensitivity analyses (Table S5) and ANCOM-BC2 (Table S3; requires R + ANCOMBC)
+python -m ml.longevity_table2
 python -m ml.longevity_sensitivity
 python -m ml.longevity_fiber_index
 python -m ml.longevity_ancombc2 --threads 8
